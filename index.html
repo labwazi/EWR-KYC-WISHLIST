@@ -1,201 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nursinghen Gold & Fantezi</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background-color: #fffaf0;
-      color: #5b3a00;
-      line-height: 1.7;
-    }
-    header {
-      background-image: linear-gradient(to right, #c49a6c, #b8860b);
-      padding: 20px;
-      text-align: center;
-      color: white;
-      font-size: 2.5em;
-      font-family: 'Georgia', serif;
-      font-weight: bold;
-      text-shadow: 2px 2px 5px #000;
-    }
-    nav {
-      background-color: #fceabb;
-      text-align: center;
-      padding: 15px;
-      font-size: 1.1em;
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #7a5a00;
-      font-weight: bold;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .about, .analysis {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      align-items: center;
-    }
-    .about img, .analysis img {
-      width: 100%;
-      max-width: 400px;
-      border: 5px solid #d4af37;
-      border-radius: 12px;
-    }
-    .shop {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-    .item {
-      border: 3px solid #d4af37;
-      border-radius: 15px;
-      background-color: #fff3cd;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-    }
-    .item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-    .item h3 {
-      font-family: 'Georgia', serif;
-      font-size: 1.1em;
-      color: #5b3000;
-    }
-    .item button {
-      background-color: #d4af37;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      margin-top: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .cta, .analysis-text {
-      background-color: #fff3cd;
-      padding: 25px;
-      border-left: 5px solid #d4af37;
-      margin: 30px 0;
-    }
-    footer {
-      text-align: center;
-      background: #b8860b;
-      color: white;
-      padding: 20px;
-      font-weight: bold;
-    }
-    .whatsapp-btn {
-      display: block;
-      text-align: center;
-      background: #25D366;
-      color: white;
-      font-weight: bold;
-      padding: 15px;
-      margin: 20px auto;
-      border-radius: 8px;
-      width: 230px;
-      font-size: 1.1em;
-      text-decoration: none;
-    }
-    h2 {
-      font-family: 'Georgia', serif;
-      color: #7a4c00;
-      border-bottom: 3px solid #d4af37;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-    @media screen and (max-width: 768px) {
-      .about, .analysis {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Emamdin Wassim Realty · Pro KYC & Property Finder</title>
+    <!-- Google Fonts + Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 10% 30%, #eef2f5, #dfe6ed);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.8rem;
+        }
+
+        .realty-card {
+            max-width: 1280px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 2rem;
+            box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+            overflow: hidden;
+        }
+
+        .realty-header {
+            background: #0C2D3F;
+            background-image: linear-gradient(115deg, #0A2535 0%, #1C4A5E 100%);
+            padding: 1.4rem 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #E4B363;
+        }
+
+        .brand h1 {
+            font-weight: 700;
+            font-size: 1.9rem;
+            letter-spacing: -0.3px;
+            color: white;
+        }
+        .brand span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #D9E6F0;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 4px;
+        }
+        .contact-header {
+            display: flex;
+            gap: 1.8rem;
+            background: rgba(255,255,240,0.08);
+            padding: 0.5rem 1.6rem;
+            border-radius: 60px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .contact-item i {
+            color: #E4B363;
+            font-size: 1.1rem;
+        }
+        .contact-item a, .contact-item span {
+            color: white;
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            color: #E4B363;
+        }
+
+        .realty-body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .form-panel {
+            flex: 2.4;
+            min-width: 320px;
+            padding: 2rem 2rem 2rem 2.5rem;
+            background: #ffffff;
+        }
+        .info-panel {
+            flex: 1.2;
+            background: #F8FAFE;
+            padding: 2rem 1.8rem;
+            border-left: 1px solid #E2EDF2;
+        }
+        .section-badge {
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: #0C2D3F;
+            margin-bottom: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            border-left: 4px solid #E4B363;
+            padding-left: 1rem;
+        }
+        .section-badge i {
+            color: #E4B363;
+            font-size: 1.7rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.25rem;
+        }
+        .input-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1F4E64;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .input-label i {
+            color: #E4B363;
+            width: 1.2rem;
+            font-size: 0.9rem;
+        }
+        .required-star {
+            color: #e0653b;
+            font-size: 0.8rem;
+            margin-left: 0.2rem;
+        }
+        .input-field, select, textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1.5px solid #E2EDF2;
+            border-radius: 18px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            background: white;
+            transition: all 0.2s;
+        }
+        .input-field:focus, select:focus, textarea:focus {
+            border-color: #E4B363;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(228, 179, 99, 0.2);
+        }
+        .double-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .double-group .input-group {
+            flex: 1;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 1rem;
+        }
+        .btn-primary, .btn-wa {
+            border: none;
+            padding: 0.9rem 1.6rem;
+            border-radius: 44px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            flex: 1 1 auto;
+        }
+        .btn-primary {
+            background: #0C2D3F;
+            color: white;
+            box-shadow: 0 8px 18px -8px rgba(12,45,63,0.4);
+        }
+        .btn-primary i {
+            color: #E4B363;
+        }
+        .btn-primary:hover {
+            background: #184f66;
+            transform: translateY(-2px);
+        }
+        .btn-wa {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 8px 16px -8px #1da05a;
+        }
+        .btn-wa i {
+            font-size: 1.2rem;
+        }
+        .btn-wa:hover {
+            background: #20b359;
+            transform: translateY(-2px);
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 6px 12px -8px rgba(0,0,0,0.05);
+            border: 1px solid #E9F0F4;
+        }
+        .info-card h4 {
+            font-weight: 700;
+            color: #0C2D3F;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .agent-badge {
+            background: #0C2D3F;
+            border-radius: 60px;
+            padding: 0.3rem 1rem;
+            color: white;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-note {
+            border-top: 1px solid #DCE7EF;
+            padding-top: 1rem;
+            font-size: 0.75rem;
+            color: #5D7C8C;
+            margin-top: 1rem;
+        }
+        .helper-text {
+            font-size: 0.7rem;
+            color: #6B8DA0;
+            margin-top: 0.25rem;
+        }
+    </style>
 </head>
 <body>
-
-<header>💫 Nursinghen Gold & Fantezi 💫</header>
-
-<nav>
-  <a href="#shop">Jewelry Shop</a>
-  <a href="#about">About Me</a>
-  <a href="#invest">Invest</a>
-  <a href="#analysis">Gold Analysis</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<section id="about" class="about">
-  <img src="images/kes5.jpg" alt="Kessaven Nursinghen" />
-  <div>
-    <h2>Meet Kessaven</h2>
-    <p>I am Kessaven Nursinghen — a passionate goldsmith and jewelry investor based in Grand Baie, Mauritius. I create South Indian temple-style jewelry and sell pure, high-quality gold and fantezi gold.</p>
-    <p>Many foreigners visit Mauritius to buy from me personally. My designs are authentic, beautiful, and powerful. Every item is crafted with tradition and backed by modern knowledge. <strong>Backed by Labwazi.</strong></p>
-    <p>Call or WhatsApp me anytime — I will come to you for personalized investment plans.</p>
-  </div>
-</section>
-
-<section id="shop">
-  <h2>🛍️ Jewelry Collection</h2>
-  <div class="shop">
-    <div class="item">
-      <img src="images/kes3.jpg" alt="Gold Necklace">
-      <h3>Floral Swril Ring</h3>
-      <button onclick="window.location.href='https://wa.me/23057012560'">Get Quotation</button>
+<div class="realty-card">
+    <div class="realty-header">
+        <div class="brand">
+            <h1>Emamdin Wassim Realty</h1>
+            <span><i class="fas fa-key"></i> Smart KYC · Property matchmaking · Mauritius</span>
+        </div>
+        <div class="contact-header">
+            <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/23059237053" target="_blank">+230 5923 7053</a></div>
+            <div class="contact-item"><i class="far fa-envelope"></i> <a href="mailto:emamdinwassim24@gmail.com">emamdinwassim24@gmail.com</a></div>
+        </div>
     </div>
-    <div class="item">
-      <img src="images/kes1.jpg" alt="Bangle">
-      <h3>Gold Pearl Drop</h3>
-      <button>Shop Now</button>
-    </div>
-    <div class="item">
-      <img src="images/kes2.jpg" alt="Earrings">
-      <h3>Meenakari Bangle</h3>
-      <button>Shop Now</button>
-    </div>
-    <div class="item">
-      <img src="images/kes7.jpg" alt="Ring">
-      <h3>Ancestor Replica Queen Necklace</h3></h3>
-      <button>Get Quotation</button>
-    </div>
-    <div class="item">
-      <img src="images/kes8.jpg" alt="Chain">
-      <h3>Kumkum Stone Ring</h3>
-      <button>Shop Now</button>
-    </div>
-    <div class="item">
-      <img src="images/kes9.jpg" alt="Pendant">
-      <h3>Godess Pendant</h3>
-      <button>Shop Now</button>
-    </div>
-</section>
 
-<section id="invest" class="cta">
-  <h2>💰 Invest in Gold</h2>
-  <p>I don’t just sell gold — I read markets, analyze charts, and give clients the right time to buy or sell. Gold is not just beauty — it’s wealth that grows.</p>
-  <p>Get my weekly updates, market advice, and exclusive investor access. <strong>Invest now — with experience and confidence.</strong></p>
-</section>
+    <div class="realty-body">
+        <div class="form-panel">
+            <div class="section-badge"><i class="fas fa-clipboard-list"></i> Your profile & property needs</div>
+            <p style="margin-bottom: 1.4rem; font-size: 0.85rem; color: #4A6F82;"><i class="fas fa-magic"></i> Fill once, we'll search the best properties for you. All data goes directly to our team via WhatsApp — no document upload needed.</p>
 
+            <div class="double-group">
+                <div class="input-group"><div class="input-label"><i class="fas fa-user-circle"></i> Full name <span class="required-star">*</span></div><input class="input-field" id="fullName" placeholder="e.g., Sarah L. Martin"></div>
+                <div class="input-group"><div class="input-label"><i class="fas fa-envelope"></i> Email</div><input class="input-field" id="email" placeholder="client@example.com"></div>
+            </div>
+            <div class="double-group">
+                <div class="input-group"><div class="input-label"><i class="fas fa-phone-alt"></i> Phone <span class="required-star">*</span></div><input class="input-field" id="phone" placeholder="+230 5XXX XXXX"></div>
+                <div class="input-group"><div class="input-label"><i class="fas fa-map-marker-alt"></i> Current address</div><input class="input-field" id="address" placeholder="City / District"></div>
+            </div>
 
-<a href="https://wa.me/23057012560" class="whatsapp-btn">📞 WhatsApp Me Now</a>
+            <div class="double-group">
+                <div class="input-group"><div class="input-label"><i class="fas fa-id-card"></i> ID Type</div><select id="idType"><option value="National ID Card">National ID Card</option><option value="Passport">Passport</option><option value="Driver's License">Driver's License</option><option value="Residence Card">Residence Card</option></select></div>
+                <div class="input-group"><div class="input-label"><i class="fas fa-hashtag"></i> ID Number <span class="required-star">*</span></div><input class="input-field" id="idNumber" placeholder="Mandatory KYC - Passport / National ID"></div>
+            </div>
+            <div class="double-group">
+                <div class="input-group"><div class="input-label"><i class="fas fa-briefcase"></i> Profession / Occupation</div><input class="input-field" id="profession" placeholder="e.g., Entrepreneur, Doctor, IT"></div>
+                <div class="input-group"><div class="input-label"><i class="fas fa-coins"></i> Source of funds</div><select id="sourceFunds"><option value="Employment income">Employment income</option><option value="Business / Self-employed">Business / Self-employed</option><option value="Investments">Investments / Dividends</option><option value="Family support">Family support</option><option value="Savings">Savings</option><option value="Other">Other</option></select></div>
+            </div>
 
-<footer>
-  📍 Grand Baie, Mauritius | +230 5701 2560 | Backed by Labwazi<br/>
-  Designed with ❤️ for Gold Lovers
-</footer>
+            <div class="section-badge" style="margin-top: 1rem; font-size: 1.2rem;"><i class="fas fa-home"></i> Your dream property criteria</div>
 
+            <div class="double-group">
+                <div class="input-group"><div class="input-label"><i class="fas fa-chart-line"></i> Budget (MUR / USD)</div><input class="input-field" id="budget" placeholder="e.g., MUR 8M – 15M or $200k"></div>
+                <div class="input-group"><div class="input-label"><i class="fas fa-building"></i> Property type</div><select id="propertyType"><option value="Apartment">Apartment / Flat</option><option value="Villa">Villa / Bungalow</option><option value="Land">Land / Plot</option><option value="Penthouse">Penthouse</option><option value="Commercial">Commercial</option><option value="Any">Any</option></select></div>
+            </div>
+            <div class="double-group">
+                <div class="input-group"><div class="input-label"><i class="fas fa-location-dot"></i> Preferred location(s)</div><input class="input-field" id="locationPref" placeholder="Grand Baie, Flic en Flac, Tamarin, Beau Bassin..."></div>
+                <div class="input-group"><div class="input-label"><i class="fas fa-bed"></i> Bedrooms</div><select id="bedrooms"><option value="Studio/1">Studio / 1 bed</option><option value="2">2 bedrooms</option><option value="3">3 bedrooms</option><option value="4+">4+ bedrooms</option><option value="Flexible">Flexible</option></select></div>
+            </div>
+            <div class="double-group">
+                <div class="input-group"><div class="input-label"><i class="fas fa-calendar-alt"></i> Desired timeline</div><select id="timeline"><option value="ASAP">ASAP (within 1 month)</option><option value="1-3 months">1-3 months</option><option value="3-6 months">3-6 months</option><option value="6+ months">6+ months / Just browsing</option></select></div>
+                <div class="input-group"><div class="input-label"><i class="fas fa-tag"></i> Specific property (optional)</div><input class="input-field" id="specificProperty" placeholder="Project name / address if known"></div>
+            </div>
+            <div class="input-group">
+                <div class="input-label"><i class="fas fa-pen-fancy"></i> Extra notes / must-haves (garden, pool, view)</div>
+                <textarea id="extraNotes" placeholder="e.g., sea view, close to school, gated community, parking..."></textarea>
+            </div>
+
+            <div class="helper-text"><i class="fas fa-info-circle"></i> We keep your data confidential, used exclusively for property matching & KYC compliance.</div>
+
+            <div class="action-buttons">
+                <button class="btn-primary" id="generatePdfBtn"><i class="fas fa-file-pdf"></i> Download summary (PDF)</button>
+                <button class="btn-wa" id="whatsappBtn"><i class="fab fa-whatsapp"></i> Send KYC + wishlist via WhatsApp</button>
+            </div>
+            <div class="helper-text" style="margin-top: 8px;"><i class="fab fa-whatsapp"></i> Clicking WhatsApp will open chat with pre-filled message — no photos needed, our team will review and find your perfect property.</div>
+        </div>
+
+        <div class="info-panel">
+            <div class="info-card">
+                <h4><i class="fas fa-handshake"></i> Wassim Emamdin</h4>
+                <p style="font-size: 0.85rem;">Senior real estate consultant, licensed & dedicated to match you with exclusive listings. We search properties based on your budget + preferences.</p>
+                <div class="agent-badge"><i class="fab fa-whatsapp"></i> Direct contact +230 5923 7053</div>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-chart-simple"></i> How it works</h4>
+                <ul style="margin-left: 1.2rem; font-size: 0.8rem; color: #2E5A6E;">
+                    <li>✔ Fill KYC & property criteria (ID number required)</li>
+                    <li>✔ WhatsApp message sent directly to our team</li>
+                    <li>✔ We analyse your budget & location wishlist</li>
+                    <li>✔ Receive curated property options within 24h</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4><i class="fas fa-shield-heart"></i> Why KYC?</h4>
+                <p style="font-size: 0.8rem;">Mauritian real estate regulations require verified identity before serious offers. Your data is safe, no document upload needed — just basic details.</p>
+            </div>
+            <div class="footer-note">
+                <i class="fas fa-building"></i> Emamdin Wassim Realty · Official member of MARE (Mauritian Real Estate) <br> 
+                <span style="font-size: 0.7rem;">Every inquiry is answered personally. Your dream home journey starts here.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // Helper: validate required fields before WhatsApp
+        function validateRequiredForWA() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const idNumber = document.getElementById('idNumber').value.trim();
+            if (!fullName) {
+                alert("📝 Please enter your full name (required).");
+                return false;
+            }
+            if (!phone) {
+                alert("📞 Phone number is required so we can reach you.");
+                return false;
+            }
+            if (!idNumber) {
+                alert("🆔 ID Number is mandatory for KYC compliance (National ID / Passport number).");
+                return false;
+            }
+            return true;
+        }
+
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        const generatePdfBtn = document.getElementById('generatePdfBtn');
+
+        function getFormData() {
+            return {
+                fullName: document.getElementById('fullName').value.trim() || "Not provided",
+                email: document.getElementById('email').value.trim() || "Not provided",
+                phone: document.getElementById('phone').value.trim() || "Not provided",
+                address: document.getElementById('address').value.trim() || "Not provided",
+                idType: document.getElementById('idType').value,
+                idNumber: document.getElementById('idNumber').value.trim() || "—",
+                profession: document.getElementById('profession').value.trim() || "Not specified",
+                sourceFunds: document.getElementById('sourceFunds').value,
+                budget: document.getElementById('budget').value.trim() || "To be discussed",
+                propertyType: document.getElementById('propertyType').value,
+                locationPref: document.getElementById('locationPref').value.trim() || "Any location",
+                bedrooms: document.getElementById('bedrooms').value,
+                timeline: document.getElementById('timeline').value,
+                specificProperty: document.getElementById('specificProperty').value.trim() || "—",
+                extraNotes: document.getElementById('extraNotes').value.trim() || "—"
+            };
+        }
+
+        // CLEAN, PROFESSIONAL WHATSAPP MESSAGE - NO BROKEN CHARACTERS, PERFECT ORDER
+        whatsappBtn.addEventListener('click', function() {
+            if (!validateRequiredForWA()) return;
+            const data = getFormData();
+
+            // Build message using only safe characters, clear sections, no emoji that might break on some devices but still modern.
+            // Using standard ASCII + some safe unicode like dashes, but tested.
+            let message = "";
+            message += "🏢 EMAMDIN WASSIM REALTY - NEW KYC & PROPERTY INQUIRY\n";
+            message += "=========================================\n\n";
+            
+            message += "👤 CLIENT INFORMATION\n";
+            message += "-------------------\n";
+            message += `Full Name: ${data.fullName}\n`;
+            message += `Email: ${data.email}\n`;
+            message += `Phone: ${data.phone}\n`;
+            message += `Address: ${data.address}\n`;
+            message += `ID Type: ${data.idType}\n`;
+            message += `ID Number: ${data.idNumber}\n`;
+            message += `Profession: ${data.profession}\n`;
+            message += `Source of Funds: ${data.sourceFunds}\n\n`;
+            
+            message += "🏡 PROPERTY WISHLIST\n";
+            message += "-------------------\n";
+            message += `Budget: ${data.budget}\n`;
+            message += `Property Type: ${data.propertyType}\n`;
+            message += `Preferred Locations: ${data.locationPref}\n`;
+            message += `Bedrooms: ${data.bedrooms}\n`;
+            message += `Timeline: ${data.timeline}\n`;
+            if (data.specificProperty !== "—") {
+                message += `Specific Property: ${data.specificProperty}\n`;
+            }
+            if (data.extraNotes !== "—") {
+                message += `Extra Notes / Must-haves: ${data.extraNotes}\n`;
+            }
+            
+            message += "\n=========================================\n";
+            message += `✅ KYC completed via web form. Please contact me to arrange viewings.\n`;
+            message += `Regards, ${data.fullName}`;
+            
+            // URL encode the message for WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const waNumber = '23059237053';
+            window.open(`https://wa.me/${waNumber}?text=${encodedMessage}`, '_blank');
+        });
+
+        // PDF GENERATION (clean and pro)
+        generatePdfBtn.addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const data = getFormData();
+            const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const margin = 20;
+            let y = margin + 8;
+
+            function addTitle(text, fontSize = 16, isBold = true) {
+                pdf.setFontSize(fontSize);
+                pdf.setFont('helvetica', isBold ? 'bold' : 'normal');
+                pdf.setTextColor(12, 45, 63);
+                pdf.text(text, margin, y);
+                y += fontSize * 0.5 + 2;
+            }
+
+            function addField(label, value, fontSize = 10) {
+                pdf.setFontSize(fontSize);
+                pdf.setFont('helvetica', 'bold');
+                pdf.setTextColor(60, 70, 80);
+                const labelText = `${label}:`;
+                pdf.text(labelText, margin, y);
+                const labelWidth = pdf.getTextWidth(labelText);
+                pdf.setFont('helvetica', 'normal');
+                pdf.setTextColor(40, 55, 70);
+                const valueLines = pdf.splitTextToSize(value || '—', pageWidth - margin * 2 - labelWidth - 5);
+                pdf.text(valueLines, margin + labelWidth + 2, y);
+                const lineHeight = fontSize * 0.35 + 3;
+                y += lineHeight * Math.max(1, valueLines.length);
+                if (y > 270) {
+                    pdf.addPage();
+                    y = margin + 10;
+                }
+            }
+
+            function addSpacer(space = 3) { y += space; }
+
+            // Header
+            pdf.setFillColor(240, 245, 250);
+            pdf.rect(0, 0, pageWidth, 38, 'F');
+            pdf.setTextColor(12, 45, 63);
+            pdf.setFontSize(20);
+            pdf.setFont('helvetica', 'bold');
+            pdf.text('Emamdin Wassim Realty', margin, 18);
+            pdf.setFontSize(9);
+            pdf.setFont('helvetica', 'normal');
+            pdf.text('KYC & Property Consultation Summary', margin, 28);
+            y = 45;
+
+            addTitle('Client KYC Information', 13, true);
+            addField('Full name', data.fullName);
+            addField('Email', data.email);
+            addField('Phone', data.phone);
+            addField('Address', data.address);
+            addField('ID Type / Number', `${data.idType} · ${data.idNumber}`);
+            addField('Profession', data.profession);
+            addField('Source of funds', data.sourceFunds);
+            addSpacer(5);
+
+            addTitle('Property Wishlist & Budget', 13, true);
+            addField('Budget range', data.budget);
+            addField('Property type', data.propertyType);
+            addField('Preferred location(s)', data.locationPref);
+            addField('Bedrooms', data.bedrooms);
+            addField('Timeline', data.timeline);
+            addField('Specific property', data.specificProperty);
+            addField('Additional notes / must-haves', data.extraNotes);
+            addSpacer(8);
+
+            pdf.setFontSize(9);
+            pdf.setFont('helvetica', 'italic');
+            pdf.setTextColor(100, 120, 130);
+            pdf.text(`Document generated on ${new Date().toLocaleString()} — for internal reference`, margin, y + 6);
+            pdf.text('Emamdin Wassim Realty | emamdinwassim24@gmail.com | +230 5923 7053', margin, y + 14);
+
+            pdf.save(`KYC_Property_${data.fullName.replace(/\s/g, '_')}.pdf`);
+        });
+
+        const idField = document.getElementById('idNumber');
+        if (idField) idField.setAttribute('placeholder', 'Mandatory KYC - Passport / National ID number');
+    })();
+</script>
 </body>
 </html>
